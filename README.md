@@ -2,10 +2,12 @@
 支持String、json、jsonarray,list等校验
 
 1、使用时，将JSONCompareUtil.java拷到工程里就可以使用。
-cmpResp(String actualResp, String expectResp)为通用校验入口
-cmpJsonObject(JSONObject actualJson, JSONObject expectedJson) 是进行JSONObject的比对
-cmpJsonArray(JSONArray actualJsonArray, JSONArray expectedJsonArray)是进行JSONArray的比对
 
+cmpResp(String actualResp, String expectResp)为通用校验入口
+
+cmpJsonObject(JSONObject actualJson, JSONObject expectedJson) 是进行JSONObject的比对
+
+cmpJsonArray(JSONArray actualJsonArray, JSONArray expectedJsonArray)是进行JSONArray的比对
 
 2、expectResp可以是某个字段，此时校验时会检查整个响应是否包含expectResp字段。例如
 assertTrue(JSONCompareUtil.cmpResp(actualResp, "userId"))
