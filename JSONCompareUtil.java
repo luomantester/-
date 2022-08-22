@@ -32,6 +32,12 @@ public class JSONCompareUtil {
 //        return;
 //    }
 
+    /**
+     * 通用校验入口
+     * @param actualResp：实际的响应
+     * @param expectResp：期望的响应
+     * @return
+     */
     public static Boolean cmpResp(String actualResp, String expectResp) {
         log.info("response compare start");
         if (actualResp == null && expectResp == null) {
@@ -79,7 +85,8 @@ public class JSONCompareUtil {
     }
 
     /**
-     * 判断实际结果和预期结果是否一致，在预期结果中可以去除不需要验证的key
+     * 判断实际结果和预期结果是否一致
+     * 在预期结果中可以去除不需要验证的key
      *
      * @param actualJson
      * @param expectedJson
@@ -182,6 +189,7 @@ public class JSONCompareUtil {
     }
 
     /**
+     * JsonArray校验
      * @param actualJsonArray
      * @param expectedJsonArray
      * @return
