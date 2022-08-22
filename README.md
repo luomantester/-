@@ -1,5 +1,6 @@
 封装出一个通用的接口响应校验方法，降低接口响应校验的编写和维护成本。
-支持String、json、jsonarray,list等校验
+支持String、json、jsonarray,list等校验。
+当前，只要期望的响应和实际的响应体格式一致，且期望响应是实际响应的子集，则可检验通过。
 
 1、使用时，将JSONCompareUtil.java拷到工程里就可以使用。
 
