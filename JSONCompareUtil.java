@@ -43,8 +43,8 @@ public class JSONCompareUtil {
         }
 
         Boolean compareResult = true;
+        //期望的结果是不是实际结果的部分String
         if (!actualResp.contains(expectResp)) {
-//            log.info("请求和响应使用String方式比对不一致");
             if (verifyJsonObject(actualResp) && verifyJsonObject(expectResp)) {
                 //如果字段值都是json串，就转为json比对
                 log.info("请求和响应使用josn方式比对");
@@ -55,7 +55,6 @@ public class JSONCompareUtil {
                 compareResult = cmpJsonArray(stringToJsonArray((actualResp)), stringToJsonArray(expectResp));
             } else {
                 //都不是，看看是不是乱序的部分字段
-                //log.warn("响应结果非json和jsonarray，分割字段，看看是否包含");
                 List<String> respsplit0 = Arrays.asList(expectResp.split(","));
                 List<String> respsplit1 = Arrays.asList(actualResp.split(","));
                 for (String fragExpect: respsplit0){
@@ -129,6 +128,7 @@ public class JSONCompareUtil {
 
                         break;
                     }
+                    //特殊处理，希望key的值等于0
                     if (expectedEntry.getValue().equals("==0")){
                         if (Integer.parseInt(actualEntry.getValue().toString())==0){
                             compareResult = true;
