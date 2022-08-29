@@ -34,6 +34,7 @@ public class JSONCompareUtil {
 
     /**
      * 通用校验入口
+     *
      * @param actualResp：实际的响应
      * @param expectResp：期望的响应
      * @return
@@ -63,11 +64,11 @@ public class JSONCompareUtil {
                 //都不是，看看是不是乱序的部分字段
                 List<String> respsplit0 = Arrays.asList(expectResp.split(","));
                 List<String> respsplit1 = Arrays.asList(actualResp.split(","));
-                for (String fragExpect: respsplit0){
-                    if (respsplit1.contains(fragExpect)){
+                for (String fragExpect : respsplit0) {
+                    if (respsplit1.contains(fragExpect)) {
                         continue;
-                    }else {
-                        log.warn("响应结果不包含目标字段，"+fragExpect);
+                    } else {
+                        log.warn("响应结果不包含目标字段，" + fragExpect);
                         compareResult = false;
                         break;
                     }
@@ -114,7 +115,7 @@ public class JSONCompareUtil {
                         }
                     }
                     //特殊处理，如果希望有这个key，但不关心value值，可以置value值为testNotCare
-                    if (expectedEntry.getValue().equals("testNotCare")){
+                    if (expectedEntry.getValue().equals("testNotCare")) {
                         compareResult = true;
                         break;
                     }
@@ -125,23 +126,23 @@ public class JSONCompareUtil {
                     }
 
                     //特殊处理，希望key的值大于等于0，或者等于0。可根据情况添加代码
-                    if (expectedEntry.getValue().equals(">=0")){
-                        if (Integer.parseInt(actualEntry.getValue().toString())>0){
+                    if (expectedEntry.getValue().equals(">=0")) {
+                        if (Integer.parseInt(actualEntry.getValue().toString()) >= 0) {
                             compareResult = true;
-                        }else {
+                        } else {
                             compareResult = false;
-                            log.warn(actualEntry.getKey() + "期望值大于0，实际为"+actualEntry.getValue().toString());
+                            log.warn(actualEntry.getKey() + "期望值大于0，实际为" + actualEntry.getValue().toString());
                         }
 
                         break;
                     }
                     //特殊处理，希望key的值等于0
-                    if (expectedEntry.getValue().equals("==0")){
-                        if (Integer.parseInt(actualEntry.getValue().toString())==0){
+                    if (expectedEntry.getValue().equals("==0")) {
+                        if (Integer.parseInt(actualEntry.getValue().toString()) == 0) {
                             compareResult = true;
-                        }else {
+                        } else {
                             compareResult = false;
-                            log.warn(actualEntry.getKey() + "期望值等于0，实际为"+actualEntry.getValue().toString());
+                            log.warn(actualEntry.getKey() + "期望值等于0，实际为" + actualEntry.getValue().toString());
                         }
                         break;
                     }
@@ -149,9 +150,9 @@ public class JSONCompareUtil {
                     //进行value比较
                     if (!actualEntry.getValue().equals(expectedEntry.getValue())) {
                         //字段值和期望值不等时
-                        if (actualEntry.getValue().toString().contains(expectedEntry.getValue().toString())){
+                        if (actualEntry.getValue().toString().contains(expectedEntry.getValue().toString())) {
                             compareResult = true;
-                        }else if (verifyJsonObject(actualEntry.getValue().toString()) && verifyJsonObject(expectedEntry.getValue().toString())) {
+                        } else if (verifyJsonObject(actualEntry.getValue().toString()) && verifyJsonObject(expectedEntry.getValue().toString())) {
                             //如果字段值都是json串，就转为json比对
                             compareResult = cmpJsonObject(stringToJson(actualEntry.getValue().toString()), stringToJson(expectedEntry.getValue().toString()));
                         } else if (verifyJsonArray(actualEntry.getValue().toString()) && verifyJsonArray(expectedEntry.getValue().toString())) {
@@ -162,17 +163,17 @@ public class JSONCompareUtil {
                             //log.warn("字段value非json或jsonarray，且不相等，看看是否为包含关系");
                             List<String> respsplit0 = Arrays.asList(expectedEntry.getValue().toString().split(","));
                             List<String> respsplit1 = Arrays.asList(actualEntry.getValue().toString().split(","));
-                            for (String fragExpect: respsplit0){
-                                if (respsplit1.contains(fragExpect)){
+                            for (String fragExpect : respsplit0) {
+                                if (respsplit1.contains(fragExpect)) {
                                     continue;
-                                }else {
+                                } else {
                                     compareResult = false;
                                 }
                             }
                         }
                         if (!compareResult) {
-                            log.warn("字段值未匹配："+expectedEntry.getKey());
-                            log.warn("期望："+expectedEntry.getValue());
+                            log.warn("字段值未匹配：" + expectedEntry.getKey());
+                            log.warn("期望：" + expectedEntry.getValue());
                             return false;
                         }
                     }
@@ -181,7 +182,7 @@ public class JSONCompareUtil {
             }
             if (hasKey == 0) {
                 //没有找到期望的key，比对失败
-                log.warn("key not found："+expectedEntry.getKey());
+                log.warn("key not found：" + expectedEntry.getKey());
                 return false;
             }
         }
@@ -190,6 +191,7 @@ public class JSONCompareUtil {
 
     /**
      * JsonArray校验
+     *
      * @param actualJsonArray
      * @param expectedJsonArray
      * @return
@@ -217,8 +219,8 @@ public class JSONCompareUtil {
                             partCompareResult = true;
                         }
                     }
-                    if (partCompareResult){
-                        log.info("jsonarray找到期望数据，"+expectedJsonArray.get(j));
+                    if (partCompareResult) {
+                        log.info("jsonarray找到期望数据，" + expectedJsonArray.get(j));
                         break;
                     }
                 }
@@ -320,7 +322,7 @@ public class JSONCompareUtil {
         if (!verifyJson(newMsg)) {
             //如果去转义后json格式破坏，则使用去转义前的String
             return JSONObject.parseObject(Msg);
-        }else {
+        } else {
             final JSONObject reJsonObject = JSONObject.parseObject(newMsg);
             return reJsonObject;
         }
@@ -343,7 +345,7 @@ public class JSONCompareUtil {
         if (!verifyJson(newMsg)) {
             //如果去转义后json格式破坏，则使用去转义前的String
             return JSONArray.parseArray(Msg);
-        }else {
+        } else {
             final JSONArray reJsonObject = JSONArray.parseArray(newMsg);
             return reJsonObject;
         }
