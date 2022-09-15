@@ -1,5 +1,5 @@
 /*
- * JSONCompareUtil.java
+ * ApiRespCompareUtil.java
  * Copyright 2022 Qunhe Tech, all rights reserved.
  * Qunhe PROPRIETARY/CONFIDENTIAL, any form of usage is subject to approval.
  */
@@ -13,8 +13,8 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.qunhe.test.apollo.util.StringUtils;
 import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 
 @Log4j
-public class JSONCompareUtil {
+public class ApiRespCompareUtil {
 
 //    public static void main(final String[] args){
 //        String actualResp="\"abc,def,efg,hij,klm\"";
