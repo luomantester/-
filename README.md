@@ -2,7 +2,7 @@
 支持String、json、jsonarray,list等校验。
 当前，只要期望的响应和实际的响应体格式一致，且期望响应是实际响应的子集，则可检验通过。
 
-1、使用时，将JSONCompareUtil.java拷到工程里就可以使用。
+1、使用时，将ApiRespCompareUtil.java拷到工程里就可以使用。
 
 cmpResp(String actualResp, String expectResp)为通用校验入口
 
@@ -11,7 +11,7 @@ cmpJsonObject(JSONObject actualJson, JSONObject expectedJson) 是进行JSONObjec
 cmpJsonArray(JSONArray actualJsonArray, JSONArray expectedJsonArray)是进行JSONArray的比对
 
 2、expectResp可以是某个字段，此时校验时会检查整个响应是否包含expectResp字段。例如
-assertTrue(JSONCompareUtil.cmpResp(actualResp, "userId"))
+assertTrue(ApriRespCompareUtil.cmpResp(actualResp, "userId"))
 
 3、expectResp可以是一个完整的响应
 

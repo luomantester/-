@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/JSONCompareUtil.iml" filepath="$PROJECT_DIR$/.idea/JSONCompareUtil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ApiRespCompareUtil.iml" filepath="$PROJECT_DIR$/.idea/ApiRespCompareUtil.iml" />
     </modules>
   </component>
 </project>
